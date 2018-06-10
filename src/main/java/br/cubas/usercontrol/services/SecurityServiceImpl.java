@@ -2,6 +2,7 @@ package br.cubas.usercontrol.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -39,7 +40,7 @@ public class SecurityServiceImpl implements SecurityService {
 	}
 
 	@Override
-	public void login(String username, String password) {
+	public void login(String username, String password) throws BadCredentialsException {
 		try {
 			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
@@ -52,7 +53,9 @@ public class SecurityServiceImpl implements SecurityService {
 				SecurityContextHolder.getContext().setAuthentication(auth);
 			}
 
-		} catch (Exception e) {
+		} catch (BadCredentialsException e) {
+			throw new BadCredentialsException("Bad Credencials");
+		}catch (RuntimeException e){
 			throw new RuntimeException();
 		}
 	}
