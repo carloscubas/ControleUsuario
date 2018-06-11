@@ -40,9 +40,11 @@ public class UserControllers {
 	@Autowired
 	private LoginValidator loginValidator;
 
+
 	@GetMapping("/login")
 	public ModelAndView login() {
 		return new ModelAndView("user/form", "userForm", new User());
+
 	}
 
 	@PostMapping("/autentication")

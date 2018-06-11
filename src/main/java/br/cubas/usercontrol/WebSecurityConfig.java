@@ -1,6 +1,7 @@
 package br.cubas.usercontrol;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -25,11 +26,14 @@ import java.io.IOException;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
-
+    @Value("${spring.profiles.active}")
+    private String activeProfile;
 
 	@Autowired
 	private UserDetailsService userDetailsService;
+
+    @Autowired
+    private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
 
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -37,37 +41,38 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 
-	@Bean
-	public AuthenticationSuccessHandler successHandler() {
-		SimpleUrlAuthenticationSuccessHandler handler = new SimpleUrlAuthenticationSuccessHandler();
-		handler.setUseReferer(true);
-		return handler;
-	}
-
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.headers().frameOptions().disable();
+
+
+        if (activeProfile.trim().equalsIgnoreCase("test")) {
+            http.csrf().disable();
+            http.authorizeRequests().antMatchers("/h2-console").permitAll();
+            http.headers().frameOptions().disable();
+        }
+
 		http
 		 .authorizeRequests()
-		 .antMatchers("/h2-console").permitAll()
 		 .antMatchers(HttpMethod.GET, "/user/registration").permitAll()
 		  	.antMatchers(HttpMethod.POST, "/user/registration").permitAll()
 		 .antMatchers(HttpMethod.GET, "/user/list").hasRole("BASIC")
 		  .antMatchers(HttpMethod.GET, "/user/listadmin").hasRole("ADMIN")
-                .antMatchers("/user/login**").permitAll()
+                .antMatchers("/user/form**").permitAll()
 		  .and()
-		  .formLogin()
+		  .formLogin().successHandler(myAuthenticationSuccessHandler)
 		        .loginPage("/user/login")
-                .successHandler(successHandler())
 		  .permitAll()
-		 .and().logout().permitAll();
+		 .and().logout().permitAll()
+            .and().requestCache();
+
 	}
 
 	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) 
-			throws Exception {
-		auth.userDetailsService(userDetailsService)
-				.passwordEncoder(bCryptPasswordEncoder());
-	}
+    public void configureGlobal(AuthenticationManagerBuilder auth)
+            throws Exception {
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(bCryptPasswordEncoder());
+    }
+
 
 }

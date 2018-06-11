@@ -22,7 +22,7 @@ public class ASCIIArtService {
         Graphics2D graphics = (Graphics2D) g;
         graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
                 RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        graphics.drawString("FIB 2018", 10, 20);
+        graphics.drawString("Meu Banner", 10, 20);
 
         //save this image
         //ImageIO.write(image, "png", new File("/users/mkyong/ascii-art.png"));
