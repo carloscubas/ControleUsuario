@@ -1,18 +1,14 @@
 package br.cubas.usercontrol.validator;
 
+import br.cubas.usercontrol.beans.User;
 import br.cubas.usercontrol.services.SecurityService;
+import br.cubas.usercontrol.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ObjectError;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-
-import br.cubas.usercontrol.beans.User;
-import br.cubas.usercontrol.services.UserService;
-import org.springframework.web.servlet.ModelAndView;
-
 
 @Component
 public class LoginValidator implements Validator {

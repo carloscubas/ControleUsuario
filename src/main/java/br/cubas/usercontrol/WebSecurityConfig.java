@@ -43,8 +43,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
-
         if (activeProfile.trim().equalsIgnoreCase("test")) {
             http.csrf().disable();
             http.authorizeRequests().antMatchers("/h2-console").permitAll();
@@ -59,10 +57,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		  .antMatchers(HttpMethod.GET, "/user/listadmin").hasRole("ADMIN")
                 .antMatchers("/user/form**").permitAll()
 		  .and()
-		  .formLogin().successHandler(myAuthenticationSuccessHandler)
-		        .loginPage("/user/login")
-		  .permitAll()
-		 .and().logout().permitAll()
+		  .formLogin()
+				.loginPage("/login")
+				.permitAll()
+		 .and().logout()
+				.logoutSuccessUrl("/")
+				.permitAll()
             .and().requestCache();
 
 	}

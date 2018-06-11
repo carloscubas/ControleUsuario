@@ -11,13 +11,10 @@
 	<h2>	Acesso Liberado </h2>
 	<div>
 		<ul>
-			<li><a th:href="@{/user/list}" href="#"> Lista Basica </a></li>
-			<li><a th:href="@{/user/listadmin}" href="#"> Lista Admin </a></li>
-			<li><a th:href="@{/user/logout}" href="#"> Logout </a></li>
+			<li><a th:href="@{/}" href="#"> Home </a></li>
 		</ul>
 	</div>
 	<div>
-
 		<table>
 			<tr>
 				<td>Username</td>
@@ -27,9 +24,7 @@
 				<td th:text="${user.username}">Username</td>
 				<td th:text="${user.password}">Password</td>
 			</tr>
-
 		</table>
-
 	</div>
 </body>
 </html>
