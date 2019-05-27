@@ -1,21 +1,17 @@
 package br.cubas.usercontrol.services;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-import br.cubas.usercontrol.beans.Role;
 import br.cubas.usercontrol.beans.User;
 import br.cubas.usercontrol.repository.UserRepository;
-
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
-
 
     @Override
     public void save(User user) {
