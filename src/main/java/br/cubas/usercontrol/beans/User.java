@@ -3,15 +3,8 @@ package br.cubas.usercontrol.beans;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-
-@Entity
 public class User {
 
-	@Id
 	private String username;
 
 	private String password;
@@ -23,7 +16,6 @@ public class User {
 		this.password = password;
 	}
 
-	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Role> roles = new ArrayList<>();
 
 	public String getUsername() {
@@ -54,7 +46,4 @@ public class User {
 	public String toString() {
 		return "User [username=" + username + ", password=" + password + ", roles=" + roles + "]";
 	}
-
-
-
 }

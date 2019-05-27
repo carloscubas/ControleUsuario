@@ -5,8 +5,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
+
 import br.cubas.usercontrol.beans.User;
 import br.cubas.usercontrol.services.UserService;
+
 
 @Component
 public class UserValidator implements Validator {
