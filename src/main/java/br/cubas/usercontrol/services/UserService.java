@@ -1,8 +1,8 @@
 package br.cubas.usercontrol.services;
 
-import br.cubas.usercontrol.beans.User;
-
 import java.util.List;
+
+import br.cubas.usercontrol.entities.User;
 
 public interface UserService {
 	

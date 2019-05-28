@@ -7,8 +7,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
-import br.cubas.usercontrol.beans.Role;
-import br.cubas.usercontrol.beans.User;
+import br.cubas.usercontrol.entities.Role;
+import br.cubas.usercontrol.entities.User;
+
 
 @Repository
 public class UserRepository {

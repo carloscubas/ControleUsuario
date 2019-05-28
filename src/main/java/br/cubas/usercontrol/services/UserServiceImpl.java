@@ -1,9 +1,8 @@
 package br.cubas.usercontrol.services;
 
-
 import java.util.List;
 
-import br.cubas.usercontrol.beans.User;
+import br.cubas.usercontrol.entities.User;
 import br.cubas.usercontrol.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package br.cubas.usercontrol.beans;
+package br.cubas.usercontrol.entities;
 
 import java.util.ArrayList;
 import java.util.List;

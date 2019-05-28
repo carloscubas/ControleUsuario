@@ -1,4 +1,4 @@
-package br.cubas.usercontrol.beans;
+package br.cubas.usercontrol.entities;
 
 public class Role {
 	
