@@ -10,7 +10,5 @@ public class UsercontrolApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(UsercontrolApplication.class, args);
 	}
-	
-
 
 }
