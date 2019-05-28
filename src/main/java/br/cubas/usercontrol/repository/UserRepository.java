@@ -17,32 +17,26 @@ public class UserRepository {
 	List<User> users = new ArrayList<>();
 
 	UserRepository() {
-		
-		User basic = new User("teste", "123456");
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		User basic = new User("teste", passwordEncoder.encode("123456"));
 		basic.getRoles().add(new Role("ROLE_BASIC"));
 		users.add(basic);
-		
-		User admin = new User("admin", "123456");
+
+		User admin = new User("admin", passwordEncoder.encode("123456"));
 		admin.getRoles().add(new Role("ROLE_BASIC"));
 		admin.getRoles().add(new Role("ROLE_ADMIN"));
 		users.add(admin);
-		
 	}
 
 	public User findByUsername(String username) {
-
 		User user = null;
-
 		for (User u : users) {
-
 			if (u.getUsername().equals(username)) {
 				user = u;
 			}
-
 		}
 		
 		System.out.println("lido " + user);
-
 		return user;
 	}
 
@@ -50,7 +44,6 @@ public class UserRepository {
 		users.add(user);
 		System.out.println("adicionado " + user);
 	}
-
 
 	public List<User> findAll(){
 		return users;
